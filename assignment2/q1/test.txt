@@ -1,0 +1,10 @@
+23,A,49,B,2,C
+25,B,27,D,8,
+34,B,,F
+a,,,b,c,,
+A,C,
+cC,234234,df
+
+sadadas,a.asd
+asds,asds
+

@@ -1,0 +1,14 @@
+digraph{ 
+v1[label="66 x 64"]
+v22[label="Last Two Digits",shape="box", style=""]
+v21[label="First Two Digits",shape="box", style=""]
+v211[label="6x(6+1) \n common digit"]
+v221[label= "6x4 \n uncommon digits"] 
+v2111[label = "42"  ]
+	v2211[label = "24" ]
+4224[label="4224" , shape="diamond"  ]
+v1 -> v21 -> v211 -> v2111 -> 4224  ;
+ v1 -> v22 -> v221 -> v2211 -> 4224 ;
+
+
+ }

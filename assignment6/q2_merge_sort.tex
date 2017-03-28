@@ -1,0 +1,71 @@
+\documentclass{article}
+% \usepackage[linesnumbered,boxed,lined]{algorithm2e}
+\usepackage{anysize}
+\marginsize{9mm}{9mm}{5mm}{5mm}
+\usepackage[ruled,vlined]{algorithm2e}
+\LARGE\title{Merge Sort}
+\author{Anmol Porwal }
+\date{Feburary 2017 }
+\begin{document}
+\maketitle
+\section{About the algorithm}
+Merge Sort is a very efficient method of sorting an array. It is based on divide and conquor paradigm. In this algorithm we divide the array into two halves from the middle and then sort each half recursively and then merge them.
+
+Intuitively, it operates as follows:
+\begin{itemize}
+
+	\item Divide: Divide the n-element sequence to be sorted into two subsequences of n/2 elements each.
+	\item Conquer: Sort the two subsequences recursively using merge sort.
+	\item Combine: Merge the two sorted subsequences to produce the sorted answer.
+
+		The recursion “bottoms out” when the sequence to be sorted has length 1, in which case there is no work to be done, since every sequence of length 1 is already in sorted order.
+\subsection{Pseudo Code}
+
+		For it's implementation we use two functions:
+		\begin{itemize}
+			\item MERGE -- To merge the two sorted halves of the array.
+			\item MERGE\_SORT -- The main algorithm which recursively sorts the array. 
+		\end{itemize}	
+
+		Pseudo code for MERGE\\\\ 
+		\begin{algorithm}[H]
+			\caption{MERGE(A,p,q,r)}
+			\SetAlgoLined 
+			$n_1 \gets q-p+1$ \\ 
+			$n_2 \gets r-q$ \\
+			Create arrays $L[1 .... n_1 + 1] $ and $ R[1 .... n_2 + 1]$ \\
+			\For{\textit{$i \gets 1$ TO $n_1$ }} {
+				$L[i] \gets A[p + i -1]$ 
+			}
+			\For{$j\leftarrow 1$ TO $n_2$}{
+				$R[j] \gets A[q + j]$
+			}
+			$L[n_1 + 1] \gets \infty$ \\
+			$R[n_1 + 1] \gets \infty$ \\
+			$i \gets 1$ \\
+			$j \gets 1$ \\
+			\For{\textit{$k \gets p$ TO $r$}}{
+				\If {$R[j] \ge L[i]$}{
+					$A[k] \gets L[i]$ \\
+			$i \gets i + 1$}
+			\Else{
+				$A[k] \gets R[j]$ \\
+			     $j \gets j+1$
+
+			} 
+
+			}
+		\end{algorithm}\\
+		\newpage
+
+		Pseudo code for MERGE\_SORT \\\\	     
+			     \begin{algorithm}[H]
+				     \caption{MERGE\_SORT(A,p,r)}
+				     \If {$r \ge p + 1$}{
+					     $q \gets \floor{(p+1)/2}$ \\
+				     $MERGE\_SORT(A, p, q)$ \\
+				     $MERGE\_SORT(A, q+1, r)$ \\
+				     $MERGE(A, p, q ,r)$
+				     }
+			     \end{algorithm}
+\end{document}
