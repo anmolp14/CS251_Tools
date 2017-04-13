@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Java Page</title>
+</head>
+<body>
+	<h1>This is the page which uses javascript.</h1>
+	<div >
+	<h2>Form 1</h2>
+	If you are a visitor, please click.
+	<input type="submit" class="submit" value="Submit">
+	<p>Visitors yet: <span id="result">1</span></p>
+	</div>
+	<div>
+		<h2>Form 2</h2>
+		<input type="text" class="field1"> <input type="text" class="field2"> <input type="text" class="field3"> <input type="submit" class="submit1" value="Submit">
+		<br> <p id="result1"></p>
+	</div>
+</body>
+<script>
+	var guess = document.querySelector('.submit');
+	function myFunction(){
+		var p = Number(document.getElementById("result").innerHTML);
+		document.getElementById("result").innerHTML = p+1;
+	}
+	guess.addEventListener('click',myFunction);
+
+	var guess1 = document.querySelector('.submit1');
+	var field1 = document.querySelector('.field1');
+	var field2 = document.querySelector('.field2');
+	var field3 = document.querySelector('.field3');
+
+
+	var text, parser, xmlDoc;
+	text = '<Interest></Interest>'
+	parser = new DOMParser();
+	xmlDoc = parser.parseFromString(text,"text/xml");
+	guess1.addEventListener('click',create);
+	x = xmlDoc.getElementsByTagName("Interest")[0];
+
+	// var xhttp = new XMLHttpRequest();
+	// xhttp.onreadystatechange = function() {
+	//     if (this.readyState == 4 && this.status == 200) {
+	//     myFunction1(this);
+	//     }
+	// };
+	// xhttp.open("GET", "file.xml", true);
+	// xhttp.send();
+	// function myFunction1(xml) {
+	//     xmlDoc = xml.responseXML;
+	//     x = xmlDoc.getElementsByTagName("Interest")[0];
+	//     guess1.addEventListener('click',create);
+	// }
+
+	function create(){
+		txt = "";
+		if (x.childNodes.length === 0) {
+			newEle = xmlDoc.createElement("area");
+			newEle.setAttribute("category",field2.value);
+			newChildEle = xmlDoc.createElement("faculty");
+			newChildEle.setAttribute("name",field3.value);
+			newChiChiEle = xmlDoc.createElement("student");
+			newText = xmlDoc.createTextNode(field1.value);
+			newChiChiEle.appendChild(newText);
+			newChildEle.appendChild(newChiChiEle);
+			newEle.appendChild(newChildEle);
+			x.appendChild(newEle);
+		}
+		else {
+			y = x.childNodes;
+			temp = 0;
+			for(var i=0;i<y.length;i++){
+				if ((y[i].getAttribute("category") === field2.value) || (field2.value == '')) {
+					temp = 1;
+					z=y[i].childNodes;
+					flag =0;
+					for(var j=0;j<z.length;j++){
+						if ((z[j].getAttribute("name") === field3.value) || (field3.value == '')) {
+							newChiChiEle=xmlDoc.createElement("Student");
+							newText = xmlDoc.createTextNode(field1.value);
+							newChiChiEle.appendChild(newText);
+							z[j].appendChild(newChiChiEle);
+							flag=1;
+							break;
+						}
+					}
+					if (flag === 0) {
+					newChildEle = xmlDoc.createElement("faculty");
+					newChildEle.setAttribute("name",field3.value);
+					newChiChiEle = xmlDoc.createElement("student");
+					newText = xmlDoc.createTextNode(field1.value);
+					newChiChiEle.appendChild(newText);
+					newChildEle.appendChild(newChiChiEle);
+					y[i].appendChild(newChildEle);
+					}
+					break;
+				}
+			}
+			if (temp === 0) {
+				newEle = xmlDoc.createElement("area");
+				newEle.setAttribute("category",field2.value);
+				newChildEle = xmlDoc.createElement("faculty");
+				newChildEle.setAttribute("name",field3.value);
+				newChiChiEle = xmlDoc.createElement("student");
+				newText = xmlDoc.createTextNode(field1.value);
+				newChiChiEle.appendChild(newText);
+				newChildEle.appendChild(newChiChiEle);
+				newEle.appendChild(newChildEle);
+				x.appendChild(newEle);
+			}	
+		}
+		child = x.childNodes;
+		for(var i=0;i<child.length;i++){
+			txt += '&lt;area category = "' +child[i].getAttribute("category") + '"&gt;<br>' ;
+			chiChild = child[i].childNodes;
+			for(var j=0;j<chiChild.length;j++){
+				txt += '&lt;faculty name = "'+chiChild[j].getAttribute("name")+'"&gt;<br>';
+				chi=chiChild[j].childNodes;
+				for(var k=0;k<chi.length;k++){
+					txt += "&lt;student&gt;"+chi[k].childNodes[0].nodeValue + "&lt;/student&gt;<br>";
+				}
+				txt += "&lt;/faculty&gt; <br>"
+			}
+			txt += "&lt;/area&gt; <br>"
+		}
+		document.getElementById("result1").innerHTML = "&lt;Interest&gt; <br>" + txt + "&lt;/Interest&gt;" ;
+		field1.value = '';
+		field2.value = '';
+		field3.value = '';
+		field1.focus();
+	}
+	
+</script>
+</html>

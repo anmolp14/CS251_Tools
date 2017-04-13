@@ -1,0 +1,88 @@
+. {
+	box-sizing: border-box;
+}
+body{
+	background-image: url("https://s-media-cache-ak0.pinimg.com/originals/db/f9/28/dbf9285da29b36cf34a54a4f3bff9bb8.jpg");
+/*	text-align: center;
+	width: 80%;*/
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	display: block;
+	background-color: #4fd3f7;
+	padding: auto;
+}
+h1 {
+	font-style: bold;
+	/*padding-left: 40%;*/
+	text-align: center;
+	color:  #FFFF00 ;
+}
+button {
+	background-color: #ffb6c1;	
+	color: black;
+	font-style : italic;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px black;
+}
+.buttons {
+	/*padding-left: 35%;*/
+	text-align: center;
+	height: 30px;
+}
+.buttons button:hover , .buttons button:focus {
+	background-color: blue;
+	text-shadow: 2px 2px 2px #61122f;
+	font-size: 1.5em;
+}
+
+.objects{
+	text-align: center;
+}
+.objects h2{
+	/*padding: 3px 2px;*/
+	padding: 2px;
+	color: white;
+	border: 1px solid white;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: black;
+}
+.objects div{
+	background-color: rgba(0,0,255,0.2);
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	font-size: 30px;
+}
+table,th,td {
+	border: 1px solid black;
+	/*border-collapse: collapse;*/
+}
+th,td {
+	padding-left: 5px;
+	text-align: left;
+}
+table caption {
+	border: 2px solid black;
+	font-weight: bold;
+}
+table tr th:nth-child(even) {
+    background-color: #92cee8;
+}
+table tr th:nth-child(odd) {
+    background-color: #277fa5;
+}
+#achieve {
+	font-weight: bold;
+}
+li{
+	text-align: left;
+}
+/*#resume{
+	text-decoration: none;
+	padding: 3px 2px;
+	color: white;
+	border: 1px solid white;
+	border-radius: 10px;
+	background-color: red;
+}*/
